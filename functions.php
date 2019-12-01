@@ -32,6 +32,11 @@
 		'parent'      => $term_id,
 		'slug'        => '',
 		) );
-		 
+		
 		return $term_id;
 	}		
+	
+	register_nav_menus(array(
+		'top_menu'    => 'Верхнее меню',  
+		'bottom_menu' => 'Нижнее меню'     
+	));

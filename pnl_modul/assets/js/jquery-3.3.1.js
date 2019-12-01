@@ -585,7 +585,7 @@ var i,
 		"*\\]",
 
 	pseudos = ":(" + identifier + ")(?:\\((" +
-		// To reduce the number of selectors needing tokenize in the preFilter, prefer arguments:
+		// To rpnlce the number of selectors needing tokenize in the preFilter, prefer arguments:
 		// 1. quoted (capture 3; capture 4 or capture 5)
 		"('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|" +
 		// 2. simple (capture 6)
@@ -2625,7 +2625,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 	// (the latter of which guarantees us context)
 	if ( match.length === 1 ) {
 
-		// Reduce context if the leading compound selector is an ID
+		// Rpnlce context if the leading compound selector is an ID
 		tokens = match[0] = match[0].slice( 0 );
 		if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
 				context.nodeType === 9 && documentIsHTML && Expr.relative[ tokens[1].type ] ) {
@@ -4160,7 +4160,7 @@ var dataUser = new Data();
 //	Implementation Summary
 //
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
-//	2. Improve the module's maintainability by reducing the storage
+//	2. Improve the module's maintainability by rpnlcing the storage
 //		paths to a single mechanism.
 //	3. Use the same single mechanism to support "private" and "user" data.
 //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
@@ -6802,12 +6802,12 @@ var
 	rfxtypes = /^(?:toggle|show|hide)$/,
 	rrun = /queueHooks$/;
 
-function schedule() {
+function schpnlle() {
 	if ( inProgress ) {
 		if ( document.hidden === false && window.requestAnimationFrame ) {
-			window.requestAnimationFrame( schedule );
+			window.requestAnimationFrame( schpnlle );
 		} else {
-			window.setTimeout( schedule, jQuery.fx.interval );
+			window.setTimeout( schpnlle, jQuery.fx.interval );
 		}
 
 		jQuery.fx.tick();
@@ -7456,7 +7456,7 @@ jQuery.fx.start = function() {
 	}
 
 	inProgress = true;
-	schedule();
+	schpnlle();
 };
 
 jQuery.fx.stop = function() {

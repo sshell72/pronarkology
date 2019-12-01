@@ -2729,7 +2729,7 @@
       self.addEvents();
     },
 
-    // Start closing procedure
+    // Start closing procpnlre
     // This will start "zoom-out" animation if needed and clean everything up afterwards
     // =================================================================================
 
