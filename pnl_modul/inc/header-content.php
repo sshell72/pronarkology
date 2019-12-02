@@ -1,4 +1,6 @@
 <?php global $options;
+var_dump($_SERVER);
+	//city
 	$city_id_general = get_cat_ID('Москва');
 	if(isset($_COOKIE["city_name"])){
 		$city_id = $_COOKIE["city_name"];
@@ -26,6 +28,14 @@
 			if($cat->term_id != $city_id)
 			$city_selects .= '<option value="'.$cat->term_id .'">'. $cat->name .'</option>';
 		}
+	}
+	//logo
+	$logo_img = '';
+	if( $custom_logo_id = get_theme_mod('custom_logo') ){
+		$logo_img = wp_get_attachment_image( $custom_logo_id, 'full', false, array(
+		'class'    => 'custom-logo',
+		'alt' => 'logo',
+		) );
 	}
 ?>
 <div class="wrapper-all">
@@ -57,19 +67,19 @@
 		
 		<div class="info">
 			<div class="container">
-				<a href="#" class="logo revealator-once revealator-slideright">
-					<span class="img"><img src="<?php bloginfo( 'stylesheet_directory' ); ?>/pnl_modul/assets/img/logo.png" alt="alt"></span>
+				<a href="/" class="logo revealator-once revealator-slideright">
+					<span class="img"><?php echo $logo_img; ?></span>
 					<span class="text">
-						<span>Федеральный Справочник Наркологических Клиник</span>
-						Справочная служба
+						<span><?php bloginfo('name');?></span>
+						<?php bloginfo('description');?>
 					</span>
 				</a>
 				<div class="phone revealator-once revealator-slideleft">
-					Помощь консультанта <br>
+					<?php echo $options['header'][0]['phone-text']?> <br>
 					<a href="tel:<?php echo $options['phone']?>"><?php echo $options['phone']?></a>
 				</div>
 				<div class="city">
-					<span class="revealator-once revealator-slideleft"> Ваш город <br></span>
+					<span class="revealator-once revealator-slideleft"> <?php echo $options['header'][0]['city-text']?> <br></span>
 					<div class="drop revealator-once revealator-slideleft"><?php echo $city;?></div>
 					<ul class="dropdown">
 						<?php
@@ -92,7 +102,7 @@
 					</select>
 				</div>
 				<div class="btn-container revealator-once revealator-slideleft">
-					<a href="#" class="btn btn-primary">Добавить организацию</a>
+					<a href="#" class="btn btn-primary"><?php echo $options['header'][0]['btn-text']?></a>
 				</div>
 			</div>
 		</div>
