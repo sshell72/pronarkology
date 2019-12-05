@@ -1,5 +1,9 @@
 <?php global $options;
+<<<<<<< HEAD
 //var_dump($_SERVER);
+=======
+var_dump($_SERVER);
+>>>>>>> 01faf99a3fb0b901c4ccc8866bc526fe666aed44
 	//city
 	$city_id_general = get_cat_ID('Москва');
 	if(isset($_COOKIE["city_name"])){

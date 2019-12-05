@@ -48,7 +48,10 @@
 	}
 	add_action( 'after_setup_theme', 'pnl_setup' );
 	
+<<<<<<< HEAD
 	//для хлебных крошек	
+=======
+>>>>>>> 01faf99a3fb0b901c4ccc8866bc526fe666aed44
 	function get_page_bread($id, $parent_id, $separator = '/'){
 		global $wpbd, $wp_query;
 		
@@ -79,6 +82,7 @@
 			$the_link .= str_replace('><','>'.$new_link.'<',$separator);
 		}
 		echo $the_link;
+<<<<<<< HEAD
 	}
 	
 	add_action('wp_ajax_add_comment_send_request', 'add_comment_send_request');
@@ -385,3 +389,6 @@
 		}
 	}
 add_filter( 'manage_comments_custom_column', 'comment_column', 10, 2 );	
+=======
+	}	
+>>>>>>> 01faf99a3fb0b901c4ccc8866bc526fe666aed44
