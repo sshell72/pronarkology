@@ -389,6 +389,4 @@
 		}
 	}
 add_filter( 'manage_comments_custom_column', 'comment_column', 10, 2 );	
-=======
-	}	
->>>>>>> 01faf99a3fb0b901c4ccc8866bc526fe666aed44
+
