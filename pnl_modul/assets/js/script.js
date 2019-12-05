@@ -200,9 +200,10 @@ $('.block-16 .slider').slick({
 });
 
 //star
-$('.rating2 span').on('click', function () {
+$('.rating2').on('click', 'span', function () {
 	$('.rating2 span').removeClass('active');
 	$(this).addClass('active');
+	$('#rating_review').val(5-$( this ).index());
 });
 
 // blocks animation
@@ -261,4 +262,67 @@ $(document).ready(function() {
 		location.reload();
 		
 	});
+});
+
+//антибот
+$("form").append(
+	'<input type="hidden" name="antibot" value="wjdnnsj9a77ga65sgdb">'
+);
+
+var ajax_url = '/wp-admin/admin-ajax.php';
+
+//отправка отзыва
+$(document).on("submit", "#commentform", function(e) {
+	e.stopPropagation();
+	e.preventDefault();
+	
+	var the_form = $(this);
+	
+	if (
+		!the_form.find("input[name=antibot]").length &&
+		the_form.find("input[name=antibot]") != "wjdnnsj9a77ga65sgdb"
+	)
+	return false;
+	
+	the_form.find("#hp_loading").show();
+	
+	var post_id = the_form.attr('data-id'),
+	fd = new FormData(document.getElementById("commentform"));
+	
+	fd.append('img', the_form.find('#inputGroupFile01').prop('files')[0]);
+	fd.append('post_id', post_id);
+	fd.append('action', 'add_comment_send_request');
+	
+	$.ajax({
+		url: ajax_url,
+		type: "POST",
+		data: fd,
+		cache       : false,
+		dataType: "json",
+		processData : false,
+		contentType : false, 
+		success: function(res) {
+			the_form.find("#hp_loading").hide();
+			the_form["0"].reset();
+			$('.rating2 span').removeClass('active');
+			$('#callback').find('form').hide();
+			$('#callback').find('.title').text(res.info_title);
+			$('#callback').find('.desc').text(res.info_text);
+			$.fancybox.open({
+				src  : '#callback',
+				type : 'inline',
+				opts : {
+					onComplete : function() {
+						console.info('done!');
+					}
+				}
+			});
+			setTimeout(function() {
+				$("#callback")
+				.find(".fancybox-close-small")
+				.trigger("click");
+			}, 3000);
+		}
+	});
+	
 });
