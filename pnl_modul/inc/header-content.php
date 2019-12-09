@@ -1,33 +1,18 @@
 <?php global $options;
-<<<<<<< HEAD
-//var_dump($_SERVER);
-=======
-var_dump($_SERVER);
->>>>>>> 01faf99a3fb0b901c4ccc8866bc526fe666aed44
-	//city
 	$city_id_general = get_cat_ID('Москва');
 	if(isset($_COOKIE["city_name"])){
 		$city_id = $_COOKIE["city_name"];
 		}else{
 		$city_id = (isset($_SERVER['GEOIP_CITY']))
-		? get_category_by_slug($_SERVER['GEOIP_CITY']->term_id)
+		? get_cat_ID($_SERVER['GEOIP_CITY'])
 		: $city_id_general;
 	}
-
-	/* $parent_id = get_cat_ID('Город');
+	$parent_id = get_cat_ID('Город');
 	
 	$sub_cats = get_categories( array(
 	'parent' => $parent_id,
 	'hide_empty' => 0
-	)); */
-	
-	$sub_cats = get_categories( array(
-	'show_count' => 0,
-	'pad_counts' => 0,
-	'hierarchical' => 1,
-	'hide_empty' => 0
 	));
-	
 	if( $sub_cats ){
 		foreach( $sub_cats as $cat ){
 			if($cat->term_id == $city_id)
@@ -38,17 +23,9 @@ var_dump($_SERVER);
 	$city_selects = $city_select;
 	if( $sub_cats ){
 		foreach( $sub_cats as $cat ){
-			if($cat->term_id != $city_id && $cat->term_id != 1 && $cat->category_parent == 0)
+			if($cat->term_id != $city_id)
 			$city_selects .= '<option value="'.$cat->term_id .'">'. $cat->name .'</option>';
 		}
-	}
-	//logo
-	$logo_img = '';
-	if( $custom_logo_id = get_theme_mod('custom_logo') ){
-		$logo_img = wp_get_attachment_image( $custom_logo_id, 'full', false, array(
-		'class'    => 'custom-logo',
-		'alt' => 'logo',
-		) );
 	}
 ?>
 <div class="wrapper-all">
@@ -80,19 +57,19 @@ var_dump($_SERVER);
 		
 		<div class="info">
 			<div class="container">
-				<a href="/" class="logo revealator-once revealator-slideright">
-					<span class="img"><?php echo $logo_img; ?></span>
+				<a href="#" class="logo revealator-once revealator-slideright">
+					<span class="img"><img src="<?php bloginfo( 'stylesheet_directory' ); ?>/pnl_modul/assets/img/logo.png" alt="alt"></span>
 					<span class="text">
-						<span><?php bloginfo('name');?></span>
-						<?php bloginfo('description');?>
+						<span>Федеральный Справочник Наркологических Клиник</span>
+						Справочная служба
 					</span>
 				</a>
 				<div class="phone revealator-once revealator-slideleft">
-					<?php echo $options['header'][0]['phone-text']?> <br>
+					Помощь консультанта <br>
 					<a href="tel:<?php echo $options['phone']?>"><?php echo $options['phone']?></a>
 				</div>
 				<div class="city">
-					<span class="revealator-once revealator-slideleft"> <?php echo $options['header'][0]['city-text']?> <br></span>
+					<span class="revealator-once revealator-slideleft"> Ваш город <br></span>
 					<div class="drop revealator-once revealator-slideleft"><?php echo $city;?></div>
 					<ul class="dropdown">
 						<?php
@@ -115,7 +92,7 @@ var_dump($_SERVER);
 					</select>
 				</div>
 				<div class="btn-container revealator-once revealator-slideleft">
-					<a href="#" class="btn btn-primary"><?php echo $options['header'][0]['btn-text']?></a>
+					<a href="#" class="btn btn-primary">Добавить организацию</a>
 				</div>
 			</div>
 		</div>
