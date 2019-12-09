@@ -12,6 +12,8 @@
 		
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/pnl_modul/assets/css/style.css?ver=2.1"/>
+		<script src="https://api-maps.yandex.ru/2.1/?apikey=72f03914-f58d-42bb-9a59-83d59ad9b597&lang=ru_RU" type="text/javascript">
+    </script>
 		<?php wp_head(); ?>
 	</head>
 <body <?php body_class(); ?>>

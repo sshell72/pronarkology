@@ -6,5 +6,6 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/pnl_modul/assets/js/script.js"></script>
 
+
 </body>
 </html>
